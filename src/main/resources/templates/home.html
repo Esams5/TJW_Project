@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Acadêmico</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments :: menu"></div>
+<div class="container">
+    <h1>Bem-vindo, <span th:text="${usuario}">Usuário</span>!</h1>
+    <p>Use o menu superior para gerenciar alunos, matrículas e disciplinas.</p>
+
+    <section style="display:flex; gap:1rem;">
+        <div style="background:#fff; padding:1rem; border-radius:6px; flex:1;">
+            <h3>Alunos</h3>
+            <p th:text="${totalAlunos}">0</p>
+        </div>
+        <div style="background:#fff; padding:1rem; border-radius:6px; flex:1;">
+            <h3>Disciplinas</h3>
+            <p th:text="${totalDisciplinas}">0</p>
+        </div>
+        <div style="background:#fff; padding:1rem; border-radius:6px; flex:1;">
+            <h3>Matrículas</h3>
+            <p th:text="${totalMatriculas}">0</p>
+        </div>
+    </section>
+</div>
+</body>
+</html>

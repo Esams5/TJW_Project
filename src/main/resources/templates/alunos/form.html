@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Aluno</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments :: menu"></div>
+<div class="container">
+    <h2 th:text="${aluno.id} != null ? 'Editar Aluno' : 'Novo Aluno'"></h2>
+    <form th:action="@{/alunos/salvar}" th:object="${aluno}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" th:field="*{nome}" required>
+        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-error"></span>
+
+        <label for="matricula">Matrícula</label>
+        <input id="matricula" type="text" th:field="*{matricula}" required>
+        <span th:if="${#fields.hasErrors('matricula')}" th:errors="*{matricula}" class="alert alert-error"></span>
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" th:field="*{email}" required>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-error"></span>
+
+        <label for="dataNascimento">Data de Nascimento</label>
+        <input id="dataNascimento" type="date" th:field="*{dataNascimento}" required>
+        <span th:if="${#fields.hasErrors('dataNascimento')}" th:errors="*{dataNascimento}" class="alert alert-error"></span>
+
+        <label for="status">Status</label>
+        <select id="status" th:field="*{status}">
+            <option th:each="status : ${statusList}" th:value="${status}" th:text="${status}"></option>
+        </select>
+
+        <button class="btn btn-primary" type="submit">Salvar</button>
+        <a class="btn" th:href="@{/alunos}">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

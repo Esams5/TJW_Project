@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Matrículas</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments :: menu"></div>
+<div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2>Matrículas</h2>
+        <a class="btn btn-primary" th:href="@{/matriculas/novo}">Nova Matrícula</a>
+    </div>
+
+    <div th:if="${sucesso}" class="alert alert-success" th:text="${sucesso}"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Aluno</th>
+            <th>Disciplina</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Nota</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="matricula : ${matriculas}">
+            <td th:text="${matricula.aluno.nome}">Aluno</td>
+            <td th:text="${matricula.disciplina.nome}">Disciplina</td>
+            <td th:text="${matricula.dataMatricula}">Data</td>
+            <td th:text="${matricula.status}">Status</td>
+            <td th:text="${matricula.notaFinal}">0.0</td>
+            <td>
+                <a class="btn btn-primary" th:href="@{'/matriculas/' + ${matricula.id} + '/editar'}">Editar</a>
+                <form th:action="@{'/matriculas/' + ${matricula.id} + '/excluir'}" method="post" style="display:inline;"
+                      onsubmit="return confirm('Confirmar exclusão?');">
+                    <button class="btn btn-danger" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

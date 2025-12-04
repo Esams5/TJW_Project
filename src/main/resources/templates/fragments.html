@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<body>
+<nav th:fragment="menu">
+    <header>
+        <div class="container">
+            <strong>Sistema Acadêmico</strong>
+            <div style="margin-top:0.5rem;">
+                <a th:href="@{/}">Início</a>
+                <a th:href="@{/alunos}" sec:authorize="hasAnyRole('ADMIN','SECRETARIA')">Alunos</a>
+                <a th:href="@{/matriculas}" sec:authorize="hasAnyRole('ADMIN','SECRETARIA')">Matrículas</a>
+                <a th:href="@{/disciplinas}" sec:authorize="hasRole('ADMIN')">Disciplinas</a>
+                <a th:href="@{/logout}" style="float:right;">Sair</a>
+            </div>
+        </div>
+    </header>
+</nav>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Alunos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments :: menu"></div>
+<div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2>Alunos</h2>
+        <a class="btn btn-primary" th:href="@{/alunos/novo}">Novo Aluno</a>
+    </div>
+
+    <div th:if="${sucesso}" class="alert alert-success" th:text="${sucesso}"></div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Matrícula</th>
+            <th>E-mail</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="aluno : ${alunos}">
+            <td th:text="${aluno.nome}">Nome</td>
+            <td th:text="${aluno.matricula}">Matricula</td>
+            <td th:text="${aluno.email}">Email</td>
+            <td th:text="${aluno.status}">Status</td>
+            <td>
+                <a class="btn btn-primary" th:href="@{'/alunos/' + ${aluno.id} + '/editar'}">Editar</a>
+                <form th:action="@{'/alunos/' + ${aluno.id} + '/excluir'}" method="post" style="display:inline;"
+                      onsubmit="return confirm('Confirmar exclusão?');">
+                    <button class="btn btn-danger" type="submit">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

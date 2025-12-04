@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Disciplina</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="fragments :: menu"></div>
+<div class="container">
+    <h2 th:text="${disciplina.id} != null ? 'Editar Disciplina' : 'Nova Disciplina'"></h2>
+    <form th:action="@{/disciplinas/salvar}" th:object="${disciplina}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <label for="codigo">Código</label>
+        <input id="codigo" type="text" th:field="*{codigo}" required>
+        <span th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}" class="alert alert-error"></span>
+
+        <label for="nome">Nome</label>
+        <input id="nome" type="text" th:field="*{nome}" required>
+        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="alert alert-error"></span>
+
+        <label for="cargaHoraria">Carga Horária</label>
+        <input id="cargaHoraria" type="number" th:field="*{cargaHoraria}" min="1" required>
+        <span th:if="${#fields.hasErrors('cargaHoraria')}" th:errors="*{cargaHoraria}" class="alert alert-error"></span>
+
+        <label for="semestre">Semestre</label>
+        <input id="semestre" type="text" th:field="*{semestre}" placeholder="2023.1" required>
+        <span th:if="${#fields.hasErrors('semestre')}" th:errors="*{semestre}" class="alert alert-error"></span>
+
+        <button class="btn btn-primary" type="submit">Salvar</button>
+        <a class="btn" th:href="@{/disciplinas}">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
