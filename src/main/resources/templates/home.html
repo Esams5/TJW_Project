@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Sistema Acadêmico</title>
@@ -9,7 +9,9 @@
 <div th:replace="fragments :: menu"></div>
 <div class="container">
     <h1>Bem-vindo, <span th:text="${usuario}">Usuário</span>!</h1>
-    <p>Use o menu superior para gerenciar alunos, matrículas e disciplinas.</p>
+    <p sec:authorize="isAnonymous()">Esta página é pública. Faça login para acessar os módulos restritos.</p>
+    <p sec:authorize="hasRole('ADMIN')">Você possui acesso completo para gerenciar alunos, matrículas e disciplinas.</p>
+    <p sec:authorize="hasRole('SECRETARIA')">Seu perfil permite gerenciar alunos e matrículas, com disciplinas restritas ao administrador.</p>
 
     <section style="display:flex; gap:1rem;">
         <div style="background:#fff; padding:1rem; border-radius:6px; flex:1;">

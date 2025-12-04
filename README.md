@@ -41,7 +41,7 @@ Dois usuários são criados automaticamente via `DataLoader`:
 | `admin`     | `admin123` | `ROLE_ADMIN`      | CRUD completo (alunos, disciplinas, matrículas) |
 | `secretaria`| `secret123`| `ROLE_SECRETARIA` | CRUD de alunos e matrículas                   |
 
-As senhas são armazenadas com BCrypt; altere-as em `src/main/java/com/example/tjwproject/config/DataLoader.java` se necessário.
+As senhas são armazenadas com BCrypt
 
 ## Funcionalidades
 
