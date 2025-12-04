@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "disciplinas")
@@ -30,6 +31,7 @@ public class Disciplina extends AuditableEntity {
     private Integer cargaHoraria;
 
     @NotBlank
+    @Pattern(regexp = "\\d{4}\\.(1|2)", message = "Semestre deve seguir o padrão YYYY.1 ou YYYY.2")
     @Column(nullable = false)
     private String semestre;
 
