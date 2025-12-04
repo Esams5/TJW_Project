@@ -56,7 +56,12 @@ public class AlunoController {
         if (bindingResult.hasErrors()) {
             return "alunos/form";
         }
-        alunoService.salvar(aluno);
+        try {
+            alunoService.salvar(aluno);
+        } catch (IllegalStateException ex) {
+            bindingResult.rejectValue("matricula", "duplicada", ex.getMessage());
+            return "alunos/form";
+        }
         redirectAttributes.addFlashAttribute("sucesso", "Aluno salvo com sucesso!");
         return "redirect:/alunos";
     }

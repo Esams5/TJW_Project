@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     Optional<Aluno> findByMatricula(String matricula);
+    boolean existsByMatriculaAndIdNot(String matricula, Long id);
 }

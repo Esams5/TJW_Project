@@ -26,6 +26,12 @@ public class AlunoService {
     }
 
     public Aluno salvar(Aluno aluno) {
+        boolean matriculaEmUso = aluno.getId() == null
+                ? alunoRepository.findByMatricula(aluno.getMatricula()).isPresent()
+                : alunoRepository.existsByMatriculaAndIdNot(aluno.getMatricula(), aluno.getId());
+        if (matriculaEmUso) {
+            throw new IllegalStateException("Já existe um aluno com essa matrícula");
+        }
         return alunoRepository.save(aluno);
     }
 

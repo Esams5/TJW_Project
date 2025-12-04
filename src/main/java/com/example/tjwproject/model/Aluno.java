@@ -13,6 +13,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Pattern;
 import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,6 +30,7 @@ public class Aluno extends AuditableEntity {
     private String nome;
 
     @NotBlank
+    @Pattern(regexp = "\\d{5}", message = "Matrícula deve conter exatamente 5 dígitos numéricos")
     @Column(nullable = false, unique = true)
     private String matricula;
 
