@@ -16,7 +16,6 @@ Aplicação completa em Spring Boot 3 (Java 17) com Spring MVC, Spring Data JPA
    spring.datasource.username= seu root
    spring.datasource.password= sua senha 
    ```
-   O parâmetro `createDatabaseIfNotExist=true` cria automaticamente o schema `tjw_academico` assim que a aplicação subir.
 2. Certifique-se de que o usuário possui permissão `CREATE`/`ALTER` para que o Hibernate possa gerar e atualizar as tabelas (`spring.jpa.hibernate.ddl-auto=update`).
 
 ## Execução
@@ -26,11 +25,7 @@ mvn clean package          # Baixa dependências e gera o artefato (tests skip o
 mvn spring-boot:run        # Sobe a aplicação em http://localhost:8080
 ```
 
-Se preferir rodar o .jar:
-```bash
-mvn clean package -DskipTests
-java -jar target/tjw-project-0.0.1-SNAPSHOT.jar
-```
+
 
 ## Usuários Padrão
 
@@ -71,8 +66,4 @@ Após iniciar a aplicação, acesse:
 2. Autentique com `admin/admin123` ou `secretaria/secret123`.
 3. Utilize o menu principal para navegar por alunos, disciplinas e matrículas.
 
-## Dicas
 
-- Para popular rapidamente, utilize as páginas de cadastro.
-- Caso altere o banco ou adote Docker, basta ajustar `spring.datasource.url/username/password`.
-- Se precisar resetar dados, apague o schema `tjw_academico`; o Hibernate recriará as tabelas na próxima execução.
