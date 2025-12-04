@@ -14,6 +14,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "alunos")
@@ -38,6 +39,7 @@ public class Aluno extends AuditableEntity {
 
     @NotNull
     @Past
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "data_nascimento", nullable = false)
     private LocalDate dataNascimento;
 

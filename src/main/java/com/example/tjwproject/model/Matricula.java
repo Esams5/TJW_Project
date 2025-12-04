@@ -14,6 +14,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "matriculas",
@@ -34,6 +35,7 @@ public class Matricula extends AuditableEntity {
     @NotNull
     private Disciplina disciplina;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "data_matricula", nullable = false)
     private LocalDate dataMatricula = LocalDate.now();
 
