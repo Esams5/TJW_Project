@@ -13,8 +13,8 @@ Aplicação completa em Spring Boot 3 (Java 17) com Spring MVC, Spring Data JPA
 1. Ajuste as credenciais em `src/main/resources/application.properties` se necessário. O arquivo atual usa:
    ```
    spring.datasource.url=jdbc:mysql://localhost:3306/tjw_academico?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-   spring.datasource.username=root
-   spring.datasource.password=Samuel57@
+   spring.datasource.username= seu root
+   spring.datasource.password= sua senha 
    ```
    O parâmetro `createDatabaseIfNotExist=true` cria automaticamente o schema `tjw_academico` assim que a aplicação subir.
 2. Certifique-se de que o usuário possui permissão `CREATE`/`ALTER` para que o Hibernate possa gerar e atualizar as tabelas (`spring.jpa.hibernate.ddl-auto=update`).
