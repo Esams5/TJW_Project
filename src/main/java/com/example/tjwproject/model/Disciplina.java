@@ -19,6 +19,7 @@ public class Disciplina extends AuditableEntity {
     private Long id;
 
     @NotBlank
+    @Pattern(regexp = "\\d{4}", message = "Código deve conter exatamente 4 dígitos numéricos")
     @Column(nullable = false, unique = true)
     private String codigo;
 

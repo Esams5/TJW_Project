@@ -26,6 +26,12 @@ public class DisciplinaService {
     }
 
     public Disciplina salvar(Disciplina disciplina) {
+        boolean codigoEmUso = disciplina.getId() == null
+                ? disciplinaRepository.existsByCodigo(disciplina.getCodigo())
+                : disciplinaRepository.existsByCodigoAndIdNot(disciplina.getCodigo(), disciplina.getId());
+        if (codigoEmUso) {
+            throw new IllegalStateException("Já existe uma disciplina com esse código");
+        }
         return disciplinaRepository.save(disciplina);
     }
 

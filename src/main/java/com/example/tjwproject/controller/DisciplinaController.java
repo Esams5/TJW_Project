@@ -50,7 +50,12 @@ public class DisciplinaController {
         if (bindingResult.hasErrors()) {
             return "disciplinas/form";
         }
-        disciplinaService.salvar(disciplina);
+        try {
+            disciplinaService.salvar(disciplina);
+        } catch (IllegalStateException ex) {
+            bindingResult.rejectValue("codigo", "duplicado", ex.getMessage());
+            return "disciplinas/form";
+        }
         redirectAttributes.addFlashAttribute("sucesso", "Disciplina salva com sucesso!");
         return "redirect:/disciplinas";
     }
